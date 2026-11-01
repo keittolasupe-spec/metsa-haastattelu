@@ -148,4 +148,15 @@ if rooli != "Valitse...":
             attached_files.append(tiedostonimi_raaka)
 
             # Lähetetään sähköposti
-            subject = f"Uusi haastatteluvastaus
+            
+            subject = f"Uusi haastatteluvastaus: {rooli} (ID: {haastattelu_id})"
+            body = f"Hei!\n\nUusi haastatteluvastaus saapui järjestelmään.\nRooli: {rooli}\nID: {haastattelu_id}\n\nLiitteenä ovat JSON-raakadata sekä mahdolliset äänitiedostot."
+
+            with st.spinner("Lähetetään haastatteludataa sähköpostiin..."):
+                email_success = send_email_report(subject, body, attached_files)
+
+            if email_success:
+                st.success("Vastaukset tallennettu ja lähetetty onnistuneesti osoitteeseen karkimetsat@gmail.com!")
+                st.info(f"Tallennetut tiedostot löytyvät kansiosta: `vastausarkisto/` (tiedosto: `{tiedostonimi_raaka}`)")
+            else:
+                st.warning("Vastaukset tallennettiin paikallisesti levylle, mutta sähköpostin lähetyksessä oli ongelma.")
