@@ -9,11 +9,11 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 # Streamlit-sivumuotoilu
-st.set_page_config(page_title="Toimenpide 1.3 - Haastattelujärjestelmä", layout="wide")[cite: 10]
+st.set_page_config(page_title="Toimenpide 1.3 - Haastattelujärjestelmä", layout="wide")
 
-st.title("🌲 Metsäsektorin ilmastosopeutuminen – Kysely & Haastattelu")[cite: 10]
-st.markdown("### Toimenpide 1.3: Tulevaisuustyöskentely metsäteollisuuden muutos- ja sopeutumistarpeista")[cite: 10]
-st.info("Vastauksesi kerätään turvallisesti raakadata-arkistoon ja lähetetään sähköpostiin.")[cite: 10]
+st.title("🌲 Metsäsektorin ilmastosopeutuminen – Kysely & Haastattelu")
+st.markdown("### Toimenpide 1.3: Tulevaisuustyöskentely metsäteollisuuden muutos- ja sopeutumistarpeista")
+st.info("Vastauksesi kerätään turvallisesti raakadata-arkistoon ja lähetetään sähköpostiin.")
 
 # Sähköpostin lähetysfunktio (Gmail SSL / Portti 465)
 def send_email_report(subject, body, files_to_attach):
@@ -25,7 +25,7 @@ def send_email_report(subject, body, files_to_attach):
         sender_email = "karkimetsat@gmail.com"
         sender_password = "pwvpezrzlbabutoe"
 
-    receiver_email = "karkimetsat@gmail.com"[cite: 10]
+    receiver_email = "karkimetsat@gmail.com"
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -148,14 +148,4 @@ if rooli != "Valitse...":
             attached_files.append(tiedostonimi_raaka)
 
             # Lähetetään sähköposti
-            subject = f"Uusi haastatteluvastaus: {rooli} (ID: {haastattelu_id})"
-            body = f"Hei!\n\nUusi haastatteluvastaus saapui järjestelmään.\nRooli: {rooli}\nID: {haastattelu_id}\n\nLiitteenä ovat JSON-raakadata sekä mahdolliset äänitiedostot."
-
-            with st.spinner("Lähetetään haastatteludataa sähköpostiin..."):
-                email_success = send_email_report(subject, body, attached_files)
-
-            if email_success:
-                st.success("Vastaukset tallennettu ja lähetetty onnistuneesti osoitteeseen karkimetsat@gmail.com!")
-                st.info(f"Tallennetut tiedostot löytyvät kansiosta: `vastausarkisto/` (tiedosto: `{tiedostonimi_raaka}`)")
-            else:
-                st.warning("Vastaukset tallennettiin paikallisesti levylle, mutta sähköpostin lähetyksessä oli ongelma.")
+            subject = f"Uusi haastatteluvastaus
